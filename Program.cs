@@ -37,7 +37,8 @@ do
         }
     }
 
-    if ((turns % 2) != 0)
+    // Switch the player every turn.
+    if (player == "o" || player == "")
     {
         player = "x";
     }
@@ -45,10 +46,16 @@ do
     {
         player = "o";
     }
+
+    // Ask the current player to choose a spot on the board.
     Console.Write($"{player}'s turn to choose a square (1-9): ");
+
+    // Convert the input to an int and subtract one to get the 
+    // corresponding index to edit in the array.
     int boxNum = Convert.ToInt32(Console.ReadLine()) - 1;
     places[boxNum] = player;
 
+    // Check if there is 3 x's or o's in a row.
     if ((places[0] == places[1] && places[0] == places[2]) ||
         (places[3] == places[4] && places[3] == places[5]) ||
         (places[6] == places[7] && places[6] == places[8]) ||
@@ -58,16 +65,21 @@ do
         (places[0] == places[4] && places[0] == places[8]) ||
         (places[2] == places[4] && places[2] == places[6]))
     {
+        // If there are 3 in a row end the game and set winner
+        // to true.
         game = false;
         winner = true;
     }
-    if (turns >= 9)
+
+    // End the game when the board has been filled.
+    else if (turns >= 9)
     {
         game = false;
     }
 
     Console.WriteLine("");
-    
+
+// Show the board one last time with the winning move. 
 } while (game == true);
 
 for (int i = 0; i < 9; i++)
@@ -84,6 +96,7 @@ for (int i = 0; i < 9; i++)
     }
 }
 
+// Display the winner or if it was a draw. End of game message. 
 if (winner)
 {
     Console.WriteLine($"{player}'s Win!");
