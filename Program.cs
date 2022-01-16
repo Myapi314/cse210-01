@@ -1,14 +1,28 @@
-﻿string[] places = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+﻿// CSE210-01 Tic-Tac-Toe 
+// Mya Finch Scottorn
+// 15 Jan. 2022
 
+// The array of spots on the tic-tac-toe board. 
+string[] places = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+
+// Initialize the player variable. 
 string player = "";
+
+// Set game to true and start the turns at 0.
 bool game = true;
 int turns = 0;
+bool winner = false;
 
+
+// The main loop that runs the game. 
 do
 {   
+    // The number of turn the players are on. Also for tracking when
+    // the game becomes a draw. 
     turns += 1;
-    Console.WriteLine($"\n\nTurn {turns}:");
-    // Build the board.
+    Console.WriteLine($"Turn {turns}:");
+
+    // Build and display the board.
     for (int i = 0; i < 9; i++)
     {
         Console.Write($"{places[i]}");
@@ -45,11 +59,15 @@ do
         (places[2] == places[4] && places[2] == places[6]))
     {
         game = false;
+        winner = true;
     }
     if (turns >= 9)
     {
         game = false;
     }
+
+    Console.WriteLine("");
+    
 } while (game == true);
 
 for (int i = 0; i < 9; i++)
@@ -65,4 +83,14 @@ for (int i = 0; i < 9; i++)
         Console.WriteLine("-+-+-");
     }
 }
+
+if (winner)
+{
+    Console.WriteLine($"{player}'s Win!");
+}
+else
+{
+    Console.WriteLine("DRAW :P");
+}
+
 Console.WriteLine("Good Game. Thanks for playing!");
