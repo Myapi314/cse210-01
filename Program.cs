@@ -17,6 +17,8 @@ namespace tictactoe
             }
 
             DisplayBoard(board);
+
+            // Added declaring winner/draw depending on how the game ends.
             if (HasWinner(board)) {
                 Console.WriteLine($"\n{NextPlayer(player)} wins!");
             }
@@ -48,6 +50,7 @@ namespace tictactoe
 
         static bool HasWinner(string[] board)
         {
+            // Adjusted HasWinner to be true when either player gets 3 in a row.
             return ((board[0] == board[1] && board[0] == board[2]) ||
                     (board[3] == board[4] && board[3] == board[5]) ||
                     (board[6] == board[7] && board[6] == board[8]) ||
@@ -78,6 +81,8 @@ namespace tictactoe
             int square = Convert.ToInt32(Console.ReadLine());
             while (board[square -1] == "x" || board[square - 1] == "o")
             {
+
+                // Validate the user's input and ensure that the spot hasn't already been taken.
                 Console.WriteLine($"{board[square - 1]} is already in that spot! Try again.");
                 Console.Write($"\n{player}'s turn to choose a square (1-9): ");
                 square = Convert.ToInt32(Console.ReadLine());
